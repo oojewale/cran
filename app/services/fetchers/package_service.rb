@@ -13,8 +13,6 @@ class Fetchers::PackageService
 
   def call
     begin
-      # response = conn.get "abctools_1.1.3.tar.gz"
-
       response = conn.get "#{package_name}_#{package_version}.tar.gz"
 
       unless response.status == 200

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181006205510) do
+ActiveRecord::Schema.define(version: 20181006213459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,25 @@ ActiveRecord::Schema.define(version: 20181006205510) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "authors_packages", id: false, force: :cascade do |t|
+    t.bigint "package_id", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_authors_packages_on_author_id"
+    t.index ["package_id"], name: "index_authors_packages_on_package_id"
+  end
+
   create_table "maintainers", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "maintainers_packages", id: false, force: :cascade do |t|
+    t.bigint "package_id", null: false
+    t.bigint "maintainer_id", null: false
+    t.index ["maintainer_id"], name: "index_maintainers_packages_on_maintainer_id"
+    t.index ["package_id"], name: "index_maintainers_packages_on_package_id"
   end
 
   create_table "packages", force: :cascade do |t|
@@ -35,11 +49,8 @@ ActiveRecord::Schema.define(version: 20181006205510) do
     t.date "publication_date"
     t.string "title"
     t.string "description"
-    t.string "contributable_type"
-    t.bigint "contributable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contributable_type", "contributable_id"], name: "index_packages_on_contributable_type_and_contributable_id"
   end
 
 end

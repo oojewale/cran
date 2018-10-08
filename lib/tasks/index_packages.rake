@@ -1,7 +1,8 @@
 namespace :packages do
   desc 'Indexes packages'
   task index: :environment do
-    # service to run packages indexing
-    # exit
+    puts "Task running..."
+    Fetchers::PackageIndexerService.new.call
+    puts "Task complete!"
   end
 end

@@ -6,7 +6,6 @@ class CreatePackages < ActiveRecord::Migration[5.1]
       t.date :publication_date
       t.string :title
       t.string :description
-      t.references :contributable, polymorphic: true, index: true
 
       t.timestamps
     end
