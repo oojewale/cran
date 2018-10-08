@@ -1,6 +1,9 @@
 class Fetchers::PackageIndexerService
   include Fetchers::BaseService
   attr_accessor :maintainers, :authors
+  START_INDEX = 0
+  STOP_INDEX = 50
+
   def initialize
     @maintainers = []
     @authors = []
@@ -23,7 +26,7 @@ class Fetchers::PackageIndexerService
 
   def packages
     packages = Fetchers::PackagesService.new.call
-    packages[0...50] if packages
+    packages[START_INDEX...STOP_INDEX] if packages
   end
 
   def create_package(pkg)

@@ -6,10 +6,14 @@ class PackagePresenter < SimpleDelegator
   end
 
   def authors
-    @model.authors.collect{|a| a.name }.join(', ').strip.chomp
+    extract_names(@model.authors)
   end
 
   def maintainers
-    @model.maintainers.collect{|m| m.name }.join(', ').strip.chomp
+    extract_names(@model.maintainers)
+  end
+
+  def extract_names(collection)
+    collection.collect{|m| m.name }.join(', ').strip.chomp
   end
 end
