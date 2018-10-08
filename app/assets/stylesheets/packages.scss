@@ -1,0 +1,40 @@
+$primary-color: #008cba;
+
+body {
+  width: 90%;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  float: left;
+  margin: 0 0 2em;
+  font-family: 'Helvetica', 'Helvetica Neue', 'Arial', sans-serif;
+
+
+  thead {
+    border-bottom: 3px solid $primary-color;
+    th {
+      font-size: 1.25em;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 2px solid #ddd;
+
+      td {
+        padding: .75em 0;
+      }
+    }
+  }
+
+  th, td {
+    border: 2px solid #ddd;
+    width: 25%;
+    max-width: 30%;
+    text-align: center;
+    overflow-wrap: break-word;
+  }
+}
