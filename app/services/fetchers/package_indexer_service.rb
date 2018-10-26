@@ -32,8 +32,6 @@ class Fetchers::PackageIndexerService
   def create_package(pkg)
     @package = Package.new(package_attrs(pkg))
 
-    return if @package.name_version_exists?
-
     begin
       extract_maintainers(pkg["Maintainer"])
       if pkg["Authors@R"].present?

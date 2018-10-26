@@ -1,5 +1,5 @@
 class PackagesController < ApplicationController
   def index
-    @packages = Package.all.limit(50)
+    @packages = Package.all
   end
 end

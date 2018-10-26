@@ -16,15 +16,8 @@ class Package < ApplicationRecord
   has_and_belongs_to_many :authors
   has_and_belongs_to_many :maintainers
 
-  before_create :ensure_no_duplicate
-
-  def name_version_exists?
-    Package.exists?({ name: self.name, version: self.version })
-  end
-
-  def ensure_no_duplicate
-    if name_version_exists?
-      halt(msg: 'Cannot save same version of the same package twice!')
-    end
-  end
+  validates :version, uniqueness: {
+    scope: :name,
+    message: "Cannot save same version of the same package twice!"
+  }
 end
